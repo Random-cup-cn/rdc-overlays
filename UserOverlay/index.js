@@ -194,11 +194,15 @@ socket.onmessage = event => {
 }
 
 function getAditionalMiss(countMiss) {
+    let factor;
+
     if (countMiss < 1) {
-        return 0;
+        factor = 0;
     } else if (countMiss >= 250) {
-        return 2;
+        factor = 2;
     } else {
-        return (1068.64 - 1059.07 * Math.pow(countMiss, 0.00112)) - 1;
+        factor = 1068.64 - 1059.07 * Math.pow(countMiss, 0.00112) - 1;
     }
+
+    return countMiss * factor;
 }
